@@ -203,6 +203,11 @@ button.disabled:hover {
     position:relative;
     z-index:3;
 }
+
+#spoilers {
+  display:none;
+}
+
 </style>
 </head>
 <body>
@@ -217,6 +222,7 @@ button.disabled:hover {
 </ul>
 
 <p id="buttons"><button id="pick">Pick</button> <button id="pass">Pass</button> <button id="undo">Undo</button> <button id="redo">Redo</button></p>
+<button onclick="hideSpoilers()">Show/Hide Spoiler Categories</button>
 </div>
 
 <div id="secondary">
@@ -227,15 +233,30 @@ button.disabled:hover {
 </div>
 </div>
 
-<p>Include roles:
-<label><input type="checkbox" name="roles" class="roles" value="lawyer"> Lawyer</label>
-<label><input type="checkbox" name="roles" class="roles" value="assistant"> Assistant</label>
-<label><input type="checkbox" name="roles" class="roles" value="defendant"> Defendant</label>
-<label><input type="checkbox" name="roles" class="roles" value="witness"> Witness</label>
-<label><input type="checkbox" name="roles" class="roles" value="other"> Other</label>
+<p>Include Factions:
+<label><input type="checkbox" name="factions" class="factions" value="church"> Church of Seiros</label>
+<label><input type="checkbox" name="factions" class="factions" value="kingdom"> Holy Kingdom of Faerghus</label>
+<label><input type="checkbox" name="factions" class="factions" value="alliance"> Leicester Alliance</label>
+<label><input type="checkbox" name="factions" class="factions" value="empire"> Adrestian Empire</label>
+<label><input type="checkbox" name="factions" class="factions" value="bandit"> Bandits</label>
+</p>
+<p id="spoilers">Other Factions
+<label><input type="checkbox" name="factions" class="factions" value="agartha"> Agartha</label>
+<label><input type="checkbox" name="factions" class="factions" value="almyra"> Other</label>
+<label><input type="checkbox" name="factions" class="factions" value="flame"> Flame Emperor</label>
+<label><input type="checkbox" name="factions" class="factions" value="nemesis"> Nemesis</label>
+<label><input type="checkbox" name="factions" class="factions" value="neutral"> Neutral/Other</label>
+</p>
+<p>Students?:
+<label><input type="checkbox" name="students" class="students" value="yes"> Yes</label>
+<label><input type="checkbox" name="students" class="students" value="no"> No</label>
+</p>
+<p>Playable?:
+<label><input type="checkbox" name="playables" class="playables" value="yes"> Yes</label>
+<label><input type="checkbox" name="playables" class="playables" value="no"> No</label>
 </p>
 
-<p><label>Recurring characters only? <input type="checkbox" id="recurring-only"></label></p>
+<p><label>Duplicates? <input type="checkbox" id="duplicates"></label></p>
 
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="picker.js"></script>
@@ -352,6 +373,17 @@ var sortable = new Sortable(pickerUI.elem.favorites.get(0), {
     }
 });
 /* End sortable favorites */
+
+/*hidden categories*/
+function hideSpoilers() {
+  var x = document.getElementById("spoilers");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
 </script>
 </body>
 </html>
