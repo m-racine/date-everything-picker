@@ -1,3 +1,7 @@
+Graphics courtesy of https://fireemblem.fandom.com
+
+
+
 # Favorite picker
 
 Broadly, this is a tool that allows users to pick certain items from a predefined set over others, repeatedly, until a single favorite is found, and then continue to pick for second place and so on, constructing a list. It is a generalization of the [Favorite Pokémon Picker](https://www.dragonflycave.com/favorite.html). If you haven't seen that tool before, look there and play around with it to get a better idea of what this is about.
@@ -426,7 +430,7 @@ Constructs and returns a Picker. The options object specifies options for the Pi
 - `getFilteredItems` (`function(settings)`): A function that takes the current settings and returns an array of item identifiers that should be included given these settings. By default, all items are included. (Specifying this will override any `shouldIncludeItem` function.)
 - `modifyState` (`function(state)`): A function that takes a dehydrated state that we want to restore and returns a transformed version of the state. Useful for backwards-compatibility purposes - if the user has an outdated state saved in their browser, this hook allows you to alter the state or even replace it entirely before it's restored. By default, the unmodified state is restored, provided it's a valid state.
 - `onLoadState` (`function(missingItems, extraItems)`): A function called when a saved state has just been loaded, with the `Picker` object as `this`. This hook allows you to do any work that needs to be done after a state is restored. For example, the Favorite Pokémon Picker uses this hook to display a "Welcome back" message on the page explaining that the previous state has been loaded. `missingItems` and `extraItems` are arrays containing any item identifiers not present in the loaded state even though they ought to be there according to the options passed to the picker, and any item identifiers present in the loaded state even though they shouldn't be there, respectively.
-  
+
   In practice, unless your users are manually messing with their state, these parameters will come into play only if you've edited the picker since the user last used it, such as by adding more items or removing some items. The picker will figure it out and silently edit the state to match with the current version of the picker, but these parameters allow you to do something with this information, such as informing the user that items have been added/removed.
 - `saveState` (`function(state)`): A function that takes a dehydrated state and saves it, used to override the default localStorage save feature.
 - `loadState` (`function()`): A function that retrieves and returns a dehydrated state that should be loaded for the user, used to override the default localStorage save feature. This is only run once, when first initializing the picker; if you need to do something like fetching saved state data asynchronously, then construct the Picker object *after* you've fetched the data:
