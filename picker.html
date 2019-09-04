@@ -347,14 +347,14 @@ var myPicker = new picker.Picker({
         playables: ['yes'],
         duplicates: false
     },
-    // shouldIncludeItem: function(item, settings) {
-    //     // Include only if:
-    //     // 1. the character's role is in the list of roles we've checked, and
-    //     // 2. we haven't checked the "recurring only" box, or the character is a recurring character.
-    //     return settings.factions.indexOf(item.faction) !== -1 &&
-    //       settings.students.indexOf(item.student) !== -1 &&
-    //       settings.playables.indexOf(item.playable) !== -1;
-    // }
+    shouldIncludeItem: function(item, settings) {
+        // Include only if:
+        // 1. the character's role is in the list of roles we've checked, and
+        // 2. we haven't checked the "recurring only" box, or the character is a recurring character.
+        return settings.factions.indexOf(item.faction) !== -1 &&
+          settings.students.indexOf(item.student) !== -1 &&
+          settings.playables.indexOf(item.playable) !== -1;
+    },
 
     getFilteredItems: function(settings) {
         var used = {};
@@ -363,9 +363,12 @@ var myPicker = new picker.Picker({
             // Skip item if:
             // 1. the character's role is not in the list of roles we've checked, or
             // 2. we checked the "recurring only" box, and the character is not a recurring character.
-            if (settings.factions.indexOf(items[i].faction) !== -1 &&
-                  settings.students.indexOf(items[i].student) !== -1 &&
-                   settings.playables.indexOf(items[i].playable) !== -1) continue;
+            if (settings.factions.indexOf(items[i].faction) == -1 ||
+                  settings.students.indexOf(items[i].student) == -1 ||
+                   settings.playables.indexOf(items[i].playable) == -1) continue;
+
+            console.log(items[i]);
+            console.log(settings.factions.indexOf(items[i].faction));
 
             // If we want no duplicates, make sure we're not already including a different incarnation of the same character.
             if (!settings.duplicates) {
@@ -377,6 +380,7 @@ var myPicker = new picker.Picker({
             }
             filteredList.push(items[i].id);
         }
+        console.log(settings);
         return filteredList;
     }
 });
