@@ -339,7 +339,46 @@ var items = [
 ];
 
 var myPicker = new picker.Picker({
-    items: items
+    items: items,
+    localStorageKey: 'picker-state',
+    defaultSettings: {
+        factions: ['kingdom', 'alliance', 'empire'],
+        students: ['yes'],
+        playables: ['yes'],
+        duplicates: false
+    },
+    // shouldIncludeItem: function(item, settings) {
+    //     // Include only if:
+    //     // 1. the character's role is in the list of roles we've checked, and
+    //     // 2. we haven't checked the "recurring only" box, or the character is a recurring character.
+    //     return settings.factions.indexOf(item.faction) !== -1 &&
+    //       settings.students.indexOf(item.student) !== -1 &&
+    //       settings.playables.indexOf(item.playable) !== -1;
+    // }
+
+    getFilteredItems: function(settings) {
+        var used = {};
+        var filteredList = [];
+        for (var i = 0; i < items.length; i++) {
+            // Skip item if:
+            // 1. the character's role is not in the list of roles we've checked, or
+            // 2. we checked the "recurring only" box, and the character is not a recurring character.
+            if (settings.factions.indexOf(items[i].faction) !== -1 &&
+                  settings.students.indexOf(items[i].student) !== -1 &&
+                   settings.playables.indexOf(items[i].playable) !== -1) continue;
+
+            // If we want no duplicates, make sure we're not already including a different incarnation of the same character.
+            if (!settings.duplicates) {
+                // Skip if we're already including a character with this base.
+                if (items[i].base && used[items[i].base]) continue;
+
+                // Record that we're including this character, so we don't introduce duplicates later.
+                used[items[i].base || items[i].id] = true;
+            }
+            filteredList.push(items[i].id);
+        }
+        return filteredList;
+    }
 });
 
 var pickerUI = new PickerUI(myPicker, {
@@ -349,7 +388,13 @@ var pickerUI = new PickerUI(myPicker, {
         undo: "#undo",
         redo: "#redo",
         evaluating: "#evaluating",
-        favorites: "#favorites"
+        favorites: "#favorites",
+        settings: {
+            factions: '.factions',
+            students: '.students',
+            playables: '.playables',
+            duplicates: '#duplicates'
+        }
     }
 });
 
