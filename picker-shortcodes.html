@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="initial-scale=1.0">
-<title>Picker</title>
+<title>Fire Emblem Three Houses Favorite Picker</title>
 <style>
 body {
     background:#FFF;
@@ -269,12 +269,17 @@ button.disabled:hover {
     padding:0.9em 2em;
     margin:0 0.2em;
 }
+
+#spoilers {
+  display:none;
+}
+
 </style>
 </head>
 <body>
-<h1>Picker</h1>
+<h1>Fire Emblem Three Houses Favorite Picker</h1>
 
-<p>You can include any content you want here.</p>
+<p>Derived from https://github.com/antialiasis/favorite-picker, Graphics courtesy of Graphics courtesy of https://fireemblem.fandom.com</p>
 
 <div id="container">
 
@@ -283,6 +288,7 @@ button.disabled:hover {
 </ul>
 
 <p id="buttons"><button id="pick">Pick</button> <button id="pass">Pass</button> <button id="undo">Undo</button> <button id="redo">Redo</button></p>
+<button onclick="hideSpoilers()">Show/Hide Spoiler Categories</button>
 </div>
 
 <div id="secondary">
@@ -310,15 +316,149 @@ button.disabled:hover {
 
 <p class="buttons"><button id="shared-list-continue">Continue from this list</button> <button class="shared-list-skip">Make my own list</button></p>
 </div>
+
+<p>Include Factions:
+<label><input type="checkbox" name="factions" class="factions" value="church"> Church of Seiros</label>
+<label><input type="checkbox" name="factions" class="factions" value="kingdom"> Holy Kingdom of Faerghus</label>
+<label><input type="checkbox" name="factions" class="factions" value="alliance"> Leicester Alliance</label>
+<label><input type="checkbox" name="factions" class="factions" value="empire"> Adrestian Empire</label>
+<label><input type="checkbox" name="factions" class="factions" value="bandit"> Bandits</label>
+</p>
+<p id="spoilers">Other Factions
+<label><input type="checkbox" name="factions" class="factions" value="agartha"> Agartha</label>
+<label><input type="checkbox" name="factions" class="factions" value="almyra"> Other</label>
+<label><input type="checkbox" name="factions" class="factions" value="flame"> Flame Emperor</label>
+<label><input type="checkbox" name="factions" class="factions" value="nemesis"> Nemesis</label>
+<label><input type="checkbox" name="factions" class="factions" value="neutral"> Neutral/Other</label>
+</p>
+<p>Students?:
+<label><input type="checkbox" name="students" class="students" value="yes"> Yes</label>
+<label><input type="checkbox" name="students" class="students" value="no"> No</label>
+</p>
+<p>Playable?:
+<label><input type="checkbox" name="playables" class="playables" value="yes"> Yes</label>
+<label><input type="checkbox" name="playables" class="playables" value="no"> No</label>
+</p>
+
+<p><label>Duplicates? <input type="checkbox" id="duplicates"></label></p>
+
 <script>
 'use strict';
 
 var items = [
-    // Define your items here
+  {id: 'alois', name: 'Alois', image: 'graphics/Alois_Portrait.png', faction: "church", playable: "yes", student: "no", base: "alois", shortcode:"fd"},
+  {id: 'annette', name: 'Annette', image: 'graphics/Annette_Portrait.png', faction: "kingdom", playable: "yes", student: "yes", base: "annette", shortcode:"ql"},
+  {id: 'bylethf', name: 'Byleth - Female', image: 'graphics/Artwork_Byleth_F.png', faction: "malleable", playable: "yes", student: "no", base: "byleth", shortcode:"tr"},
+  {id: 'bylethm', name: 'Byleth - Male', image: 'graphics/Artwork_Byleth_M.png', faction: "malleable", playable: "yes", student: "no", base: "byleth", shortcode:"qo"},
+  {id: 'claude', name: 'Claude', image: 'graphics/Artwork_Claude.png', faction: "alliance", playable: "yes", student: "yes", base: "claude", shortcode:"jn"},
+  {id: 'dimitri', name: 'Dimitri', image: 'graphics/Artwork_Dimitri.png', faction: "kingdom", playable: "yes", student: "yes", base: "dimitri", shortcode:"zf"},
+  {id: 'edelgard', name: 'Edelgard', image: 'graphics/Artwork_Edelgard.png', faction: "empire", playable: "yes", student: "yes", base: "edelgard", shortcode:"kr"},
+  {id: 'ashe', name: 'Ashe', image: 'graphics/Ashe_Portrait.png', faction: "kingdom", playable: "yes", student: "yes", base: "ashe", shortcode:"lb"},
+  {id: 'bernadetta', name: 'Bernadetta', image: 'graphics/Bernadetta_Portrait.png', faction: "empire", playable: "yes", student: "yes", base: "bernadetta", shortcode:"vr"},
+  {id: 'caspar', name: 'Caspar', image: 'graphics/Caspar_Portrait.png', faction: "empire", playable: "yes", student: "yes", base: "caspar", shortcode:"fy"},
+  {id: 'catherine', name: 'Catherine', image: 'graphics/Catherine_Portrait.png', faction: "church", playable: "yes", student: "no", base: "catherine", shortcode:"gn"},
+  {id: 'cyril', name: 'Cyril', image: 'graphics/Cyril_Portrait.png', faction: "church", playable: "yes", student: "no", base: "cyril", shortcode:"ir"},
+  {id: 'dorothea', name: 'Dorothea', image: 'graphics/Dorothea_Portrait.png', faction: "empire", playable: "yes", student: "yes", base: "dorothea", shortcode:"in"},
+  {id: 'dedue', name: 'Dedue', image: 'graphics/Doudou_Portrait.png', faction: "kingdom", playable: "yes", student: "yes", base: "dedue", shortcode:"mi"},
+  {id: 'felix', name: 'Felix', image: 'graphics/Felix_Portrait.png', faction: "kingdom", playable: "yes", student: "yes", base: "felix", shortcode:"fj"},
+  {id: 'ferdinand', name: 'Ferdinand', image: 'graphics/Ferdinand_Portrait.png', faction: "empire", playable: "yes", student: "yes", base: "ferdinand", shortcode:"ru"},
+  {id: 'flayn', name: 'Flayn', image: 'graphics/Flayn_Portrait.png', faction: "church", playable: "yes", student: "yes", base: "flayn", shortcode:"gs"},
+  {id: 'gilbert', name: 'Gilbert', image: 'graphics/Gilbert_Portrait.png', faction: "kingdom", playable: "yes", student: "no", base: "gilbert", shortcode:"bn"},
+  {id: 'hanneman', name: 'Hanneman', image: 'graphics/Hanneman_Portrait.png', faction: "church", playable: "yes", student: "no", base: "hanneman", shortcode:"xl"},
+  {id: 'hilda', name: 'Hilda', image: 'graphics/Hilda_Heroes.png', faction: "alliance", playable: "yes", student: "yes", base: "hilda", shortcode:"ry"},
+  {id: 'hubert', name: 'Hubert', image: 'graphics/Hubert_Heroes.png', faction: "empire", playable: "yes", student: "yes", base: "hubert", shortcode:"cr"},
+  {id: 'ignatz', name: 'Ignatz', image: 'graphics/Ignace_Portrait.png', faction: "alliance", playable: "yes", student: "yes", base: "ignatz", shortcode:"ky"},
+  {id: 'ingrid', name: 'Ingrid', image: 'graphics/Ingrid_Portrait.png', faction: "kingdom", playable: "yes", student: "yes", base: "ingrid", shortcode:"ly"},
+  {id: 'leonie', name: 'Leonie', image: 'graphics/Leonie_Portrait.png', faction: "alliance", playable: "yes", student: "yes", base: "leonie", shortcode:"zo"},
+  {id: 'linhardt', name: 'Linhardt', image: 'graphics/Linhardt_Portrait.png', faction: "empire", playable: "yes", student: "yes", base: "linhardt", shortcode:"zq"},
+  {id: 'lorenz', name: 'Lorenz', image: 'graphics/Lorentz_Portrait.png', faction: "alliance", playable: "yes", student: "yes", base: "lorenz", shortcode:"io"},
+  {id: 'lysithea', name: 'Lysithea', image: 'graphics/Lysithea_Portrait.png', faction: "alliance", playable: "yes", student: "yes", base: "lysithea", shortcode:"bd"},
+  {id: 'manuela', name: 'Manuela', image: 'graphics/Manuela_Portrait.png', faction: "church", playable: "yes", student: "no", base: "manuela", shortcode:"it"},
+  {id: 'marianne', name: 'Marianne', image: 'graphics/Marianne_Portrait.png', faction: "alliance", playable: "yes", student: "yes", base: "marianne", shortcode:"lr"},
+  {id: 'mercedes', name: 'Mercedes', image: 'graphics/Mercedes_Heroes.png', faction: "kingdom", playable: "yes", student: "yes", base: "mercedes", shortcode:"am"},
+  {id: 'petra', name: 'Petra', image: 'graphics/Petra_Heroes.png', faction: "empire", playable: "yes", student: "yes", base: "petra", shortcode:"re"},
+  {id: 'raphael', name: 'Raphael', image: 'graphics/Raphael_Portrait.png', faction: "alliance", playable: "yes", student: "yes", base: "raphael", shortcode:"rf"},
+  {id: 'seteth', name: 'Seteth', image: 'graphics/Seteth_Portrait.png', faction: "church", playable: "yes", student: "no", base: "seteth", shortcode:"az"},
+  {id: 'shamir', name: 'Shamir', image: 'graphics/Shamir_Portrait.png', faction: "church", playable: "yes", student: "no", base: "shamir", shortcode:"to"},
+  {id: 'slyvain', name: 'Sylvain', image: 'graphics/Sylvain_Portrait.png', faction: "kingdom", playable: "yes", student: "yes", base: "slyvain", shortcode:"vm"},
+  //non playable below
+  {id: 'anna', name: 'Anna', image: 'graphics/misc/Anna_3_Houses_portrait.png', faction: "neutral", playable: "no", student: "no", base: "anna", shortcode:"wy"},
+  {id: 'aegir', name: 'Duke Aegir', image: 'graphics/misc/Duke_Aegir_portrait.png', faction: "empire", playable: "no", student: "no", base: "aegir", shortcode:"yj"},
+  {id: 'fleche', name: 'Fleche', image: 'graphics/misc/Fleche_portrait.png', faction: "empire", playable: "no", student: "no", base: "fleche", shortcode:"ig"},
+  {id: 'ionius', name: 'Ionius IX', image: 'graphics/misc/Ionius_IX_portrait.png', faction: "empire", playable: "no", student: "no", base: "ionius", shortcode:"ho"},
+  {id: 'jeralt', name: 'Jeralt', image: 'graphics/misc/Jeralt_portrait.png', faction: "neutral", playable: "no", student: "no", base: "jeralt", shortcode:"cq"},
+  {id: 'jeritza', name: 'Jeritza', image: 'graphics/misc/Jeritza_Portrait.png', faction: "church", playable: "no", student: "no", base: "emile", shortcode:"cn"},
+  {id: 'judith', name: 'Judith', image: 'graphics/misc/Judith_portrait.png', faction: "alliance", playable: "no", student: "no", base: "judith", shortcode:"za"},
+  {id: 'lambert', name: 'Lambert', image: 'graphics/misc/Lambert_portrait.png', faction: "kingdom", playable: "no", student: "no", base: "lambert", shortcode:"ks"},
+  {id: 'monica', name: 'Monica', image: 'graphics/misc/Monica_FE16_Portrait.png', faction: "empire", playable: "no", student: "yes", base: "kronya", shortcode:"va"},
+  {id: 'rhea', name: 'Rhea', image: 'graphics/misc/Rhea_Portrait.png', faction: "church", playable: "no", student: "no", base: "rhea", shortcode:"gi"},
+  {id: 'rodrigue', name: 'Rodrigue', image: 'graphics/misc/Rodrigue_Portrait.png', faction: "kingdom", playable: "no", student: "no", base: "rodrigue", shortcode:"us"},
+  {id: 'sothis', name: 'Sothis', image: 'graphics/misc/Sothis_portrait.png', faction: "neutral", playable: "no", student: "no", base: "sothis", shortcode:"em"},
+  {id: 'tomas', name: 'Tomas', image: 'graphics/misc/Tomas_Portrait.png', faction: "church", playable: "no", student: "no", base: "solon", shortcode:"ge"},
+  //antagonists below
+  {id: 'acheron', name: 'Acheron', image: 'graphics/antagonists/Acheron_portrait.png', faction: "alliance", playable: "no", student: "no", base: "acheron", shortcode:"wp"},
+  {id: 'cornelia', name: 'Cornelia', image: 'graphics/antagonists/Cornelia_portrait.png', faction: "kingdom", playable: "no", student: "no", base: "cornelia", shortcode:"dn"},
+  {id: 'flame_emperor', name: 'Flame Emperor', image: 'graphics/antagonists/Flame_Emperor_Portrait.png', faction: "flame", playable: "no", student: "no", base: "edelgard", shortcode:"ga"},
+  {id: 'gwendal', name: 'Gwendal', image: 'graphics/antagonists/Gwendal_portrait.png', faction: "empire", playable: "no", student: "no", base: "gwendal", shortcode:"lv"},
+  {id: 'kostas', name: 'Kostas', image: 'graphics/antagonists/Kostas_Portrait.png', faction: "bandit", playable: "no", student: "no", base: "kostas", shortcode:"lw"},
+  {id: 'kronya', name: 'Kronya', image: 'graphics/antagonists/Kronya_Heroes.png', faction: "agartha", playable: "no", student: "no", base: "kronya", shortcode:"ud"},
+  {id: 'ladislava', name: 'Ladislava', image: 'graphics/antagonists/Ladislava_portrait.png', faction: "empire", playable: "no", student: "no", base: "ladislava", shortcode:"id"},
+  {id: 'lonato', name: 'Lonato', image: 'graphics/antagonists/Lonato_Portrait.png', faction: "kingdom", playable: "no", student: "no", base: "lonato", shortcode:"ee"},
+  {id: 'metodey', name: 'Metodey', image: 'graphics/antagonists/Metodey_portrait.png', faction: "empire", playable: "no", student: "no", base: "metodey", shortcode:"kd"},
+  {id: 'miklan', name: 'Miklan', image: 'graphics/antagonists/Miklan_portrait.png', faction: "bandit", playable: "no", student: "no", base: "miklan", shortcode:"ui"},
+  {id: 'nader', name: 'Nader', image: 'graphics/antagonists/Nader_portrait.png', faction: "almyra", playable: "no", student: "no", base: "nader", shortcode:"ml"},
+  {id: 'nemesis', name: 'Nemesis', image: 'graphics/antagonists/Nemesis_portrait.png', faction: "nemesis", playable: "no", student: "no", base: "nemesis", shortcode:"es"},
+  {id: 'pallardo', name: 'Pallardó', image: 'graphics/antagonists/Pallard_portrait.png', faction: "bandit", playable: "no", student: "no", base: "pallardo", shortcode:"po"},
+  {id: 'randolph', name: 'Randolph', image: 'graphics/antagonists/Randolph_portrait.png', faction: "empire", playable: "no", student: "no", base: "randolph", shortcode:"ve"},
+  {id: 'death_knight', name: 'Death Knight', image: 'graphics/antagonists/Reaper_Knight_Portrait.png', faction: "flame", playable: "no", student: "no", base: "emile", shortcode:"zm"},
+  {id: 'seiros', name: 'Seiros', image: 'graphics/antagonists/Seiros_portrait.png', faction: "church", playable: "no", student: "no", base: "seiros", shortcode:"gj"},
+  {id: 'solon', name: 'Solon', image: 'graphics/antagonists/Solon_Portrait.png', faction: "agartha", playable: "no", student: "no", base: "solon", shortcode:"xi"},
+  {id: 'thales', name: 'Thales', image: 'graphics/antagonists/Thales_Portrait.png', faction: "agartha", playable: "no", student: "no", base: "thales", shortcode:"af"},
+  {id: 'volkhard', name: 'Volkhard', image: 'graphics/antagonists/Volkhard_portrait.png', faction: "empire", playable: "no", student: "no", base: "thales", shortcode:"pn"}
+
 ];
 
 var myPicker = new picker.Picker({
-    items: items
+    items: items,
+    localStorageKey: 'picker-state',
+    defaultSettings: {
+        factions: ['kingdom', 'alliance', 'empire'],
+        students: ['yes'],
+        playables: ['yes'],
+        duplicates: false
+    },
+    shouldIncludeItem: function(item, settings) {
+        // Include only if:
+        // 1. the character's role is in the list of roles we've checked, and
+        // 2. we haven't checked the "recurring only" box, or the character is a recurring character.
+        return settings.factions.indexOf(item.faction) !== -1 &&
+          settings.students.indexOf(item.student) !== -1 &&
+          settings.playables.indexOf(item.playable) !== -1;
+    },
+
+    getFilteredItems: function(settings) {
+        var used = {};
+        var filteredList = [];
+        for (var i = 0; i < items.length; i++) {
+            // Skip item if:
+            // 1. the character's role is not in the list of roles we've checked, or
+            // 2. we checked the "recurring only" box, and the character is not a recurring character.
+            if (settings.factions.indexOf(items[i].faction) == -1 ||
+                  settings.students.indexOf(items[i].student) == -1 ||
+                   settings.playables.indexOf(items[i].playable) == -1) continue;
+
+            // If we want no duplicates, make sure we're not already including a different incarnation of the same character.
+            if (!settings.duplicates) {
+                // Skip if we're already including a character with this base.
+                if (items[i].base && used[items[i].base]) continue;
+
+                // Record that we're including this character, so we don't introduce duplicates later.
+                used[items[i].base || items[i].id] = true;
+            }
+            filteredList.push(items[i].id);
+        }
+        return filteredList;
+    }
 });
 
 var pickerUI = new PickerUI(myPicker, {
@@ -329,13 +469,15 @@ var pickerUI = new PickerUI(myPicker, {
         redo: "#redo",
         evaluating: "#evaluating",
         favorites: "#favorites",
-        shortcodeLink: "#shortcode-link",
-        sharedListContainer: "#shared-list-modal",
-        sharedList: "#shared-list",
-        sharedListContinue: "#shared-list-continue",
-        sharedListSkip: ".shared-list-skip"
+        settings: {
+            factions: '.factions',
+            students: '.students',
+            playables: '.playables',
+            duplicates: '#duplicates'
+        }
     }
 });
+
 
 pickerUI.initialize();
 
@@ -357,6 +499,18 @@ var sortable = new Sortable(pickerUI.elem.favorites.get(0), {
     }
 });
 /* End sortable favorites */
+
+/*hidden categories*/
+function hideSpoilers() {
+  var x = document.getElementById("spoilers");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+
 </script>
 </body>
 </html>
