@@ -514,10 +514,10 @@ var sortable = new Sortable(pickerUI.elem.favorites.get(0), {
 /*hidden categories*/
 function hideSpoilers() {
   var x = document.getElementById("spoilers");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
+  if (x.style.display === "block") {
     x.style.display = "none";
+  } else {
+    x.style.display = "block";
   }
 }
 
