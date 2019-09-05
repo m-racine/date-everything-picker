@@ -420,7 +420,9 @@ var items = [
 
 var myPicker = new picker.Picker({
     items: items,
-    localStorageKey: 'picker-state',
+    localStorageKey: 'fire-emblem-picker-state',
+    favoritesQueryParam: 'favs',
+    shortcodeLength: 2,
     defaultSettings: {
         factions: ['kingdom', 'alliance', 'empire'],
         students: ['yes'],
@@ -461,6 +463,7 @@ var myPicker = new picker.Picker({
     }
 });
 
+
 var pickerUI = new PickerUI(myPicker, {
     elements: {
         pick: "#pick",
@@ -469,12 +472,11 @@ var pickerUI = new PickerUI(myPicker, {
         redo: "#redo",
         evaluating: "#evaluating",
         favorites: "#favorites",
-        settings: {
-            factions: '.factions',
-            students: '.students',
-            playables: '.playables',
-            duplicates: '#duplicates'
-        }
+        shortcodeLink: "#shortcode-link",
+        sharedListContainer: "#shared-list-modal",
+        sharedList: "#shared-list",
+        sharedListContinue: "#shared-list-continue",
+        sharedListSkip: ".shared-list-skip"
     }
 });
 

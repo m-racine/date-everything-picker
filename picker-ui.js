@@ -321,6 +321,9 @@
         });
         if (this.elem.shortcodeLink && this.picker.options.favoritesQueryParam && this.picker.options.shortcodeLength) {
             this.elem.shortcodeLink.attr('href', this.picker.getShortcodeLink()).toggle(favorites.length > 0);
+        }else{
+          console.log(this.elem);
+          console.log(this.elem.shortcodeLink);
         }
     };
 
