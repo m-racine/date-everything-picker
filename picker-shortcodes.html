@@ -448,7 +448,6 @@ var myPicker = new picker.Picker({
             if (settings.factions.indexOf(items[i].faction) == -1 ||
                   settings.students.indexOf(items[i].student) == -1 ||
                    settings.playables.indexOf(items[i].playable) == -1) continue;
-
             // If we want no duplicates, make sure we're not already including a different incarnation of the same character.
             if (!settings.duplicates) {
                 // Skip if we're already including a character with this base.
@@ -476,8 +475,15 @@ var pickerUI = new PickerUI(myPicker, {
         sharedListContainer: "#shared-list-modal",
         sharedList: "#shared-list",
         sharedListContinue: "#shared-list-continue",
-        sharedListSkip: ".shared-list-skip"
+        sharedListSkip: ".shared-list-skip",
+        settings: {
+          factions: '.factions',
+          students: '.students',
+          playables: '.playables',
+          duplicates: '#duplicates'
+       }
     }
+
 });
 
 
