@@ -1,6 +1,11 @@
-Favorites Picker for characters from Fire Emblem Three Houses, by Morgan L'Fey. https://morganemily.blog/, https://github.com/m-racine
+Favorites Picker for characters from Date Everything, by Morgan L'Fey. https://morgannoonwrite.substack.com/, https://github.com/m-racine
 
 Derived from https://github.com/antialiasis/favorite-picker
 
-Graphics courtesy of https://fireemblem.fandom.com
+Graphics extracted from the assets in the game, assisted by https://assetripper.github.io/AssetRipper/index.html. Be careful running that on large bundle counts--it eats up RAM like the hungriest of hippos.
 ...
+
+
+
+Note about Alt Forms:
+    Jon Wick is omitted as the only special graphics for him appear to be late game, and I'll implement that stuff later. Ditto for "Timmy" instead of "Tim".
