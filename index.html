@@ -348,17 +348,137 @@ button.disabled:hover {
 'use strict';
 
 var items = [
-  {id: 'abel', name: 'Abel', image: 'graphics/abel_n.png', grouping: "dateable", separaable: "no", shortcode:"al"},
-  {id: 'airyn', name: 'Airyn', image: 'graphics/airyn_n.png', grouping: "dateable", separaable: "no", shortcode:"ai"},
+  {id: 'abel', name: 'Abel', image: 'graphics/abel_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"al"},
+  {id: 'airyn', name: 'Airyn', image: 'graphics/airyn_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"ai"},
+  {id: 'amir', name: 'Amir', image: 'graphics/amir_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"am"},
+  {id: 'arma', name: 'Arma', image: 'graphics/arma_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"ar"},
+  {id: 'artt', name: 'Artt', image: 'graphics/artt_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"at"},
+
+  {id: 'barry', name: 'Barry', image: 'graphics/barry_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"ba"},
+  {id: 'bathsheba', name: 'Bathsheba', image: 'graphics/bathsheba_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"bs"},
+  {id: 'beau', name: 'Beau', image: 'graphics/beau_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"be"},
+  {id: 'benhwa', name: 'Benhwa', image: 'graphics/benhwa_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"bn"},
+  {id: 'betty', name: 'Betty', image: 'graphics/betty_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"bt"},
+  {id: 'beverly', name: 'Beverly', image: 'graphics/beverly_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"bv"},
+  {id: 'bobby', name: 'Bobby', image: 'graphics/bobby_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"bb"},
+  {id: 'bodhi', name: 'Bodhi', image: 'graphics/bodhi_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"bh"},
+  
+  {id: 'cabrizzio', name: 'Cabrizzio', image: 'graphics/cabrizzio_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"cb"},
+  {id: 'cam', name: 'Cam', image: 'graphics/cam_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"cm"},
+  {id: 'celia', name: 'Celia', image: 'graphics/celia_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"ce"},
+  {id: 'chairemi', name: 'Chairemi', image: 'graphics/chairemi_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"ch"},
+  {id: 'chance', name: 'Chance', image: 'graphics/chance_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"cc"},
+  {id: 'connie', name: 'Connie', image: 'graphics/connie_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"co"},
+  {id: 'curtrod', name: 'Curt & Rod', image: 'graphics/curtrod_n.png', grouping: "dateable", separable: "yes", dlc: "no", shortcode:"cu"},
+
+  {id: 'daemon', name: 'Daemon', image: 'graphics/daemon_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"da"},
+  {id: 'daisuke', name: 'Daisuke', image: 'graphics/daisuke_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"dk"},
+  {id: 'dante', name: 'Dante', image: 'graphics/dante_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"dn"},
+  {id: 'dasha', name: 'Dasha', image: 'graphics/dasha_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"ds"},
+  {id: 'diana', name: 'Diana', image: 'graphics/diana_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"di"},
+  {id: 'dirk', name: 'Dirk', image: 'graphics/dirk_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"dr"},
+  {id: 'dishy', name: 'Dishy', image: 'graphics/dishy_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"dh"},
+  {id: 'dolly', name: 'Dolly', image: 'graphics/dolly_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"do"},
+  {id: 'dorian', name: 'Dorian', image: 'graphics/dorian_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"dr"},
+  {id: 'doug', name: 'Doug', image: 'graphics/doug_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"dg"},
+  {id: 'drysdale', name: 'Drysdale', image: 'graphics/drysdale_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"dy"},
+  {id: 'dunk', name: 'Dunk', image: 'graphics/dunk_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"du"},
+
+  {id: 'eddievolt', name: 'Eddievolt', image: 'graphics/eddievolt_n.png', grouping: "dateable", separable: "yes", dlc: "no", shortcode:"ed"},
+  
+  {id: 'fantina', name: 'Fantina', image: 'graphics/fantina_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"fa"},
+  {id: 'farya', name: 'Farya', image: 'graphics/farya_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"fy"},
+  {id: 'florence', name: 'Florence', image: 'graphics/florence_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"fl"},
+  {id: 'freddy', name: 'Freddy', image: 'graphics/freddy_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"fr"},
+  {id: 'friar', name: 'Friar', image: 'graphics/friar_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"fi"},
+  
+  {id: 'gaia', name: 'Gaia', image: 'graphics/gaia_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"ga"},
+  
+  {id: 'hanks', name: 'Hanks', image: 'graphics/hanks_n.png', grouping: "dateable", separable: "yes", dlc: "no", shortcode:"hk"},
+  {id: 'harper', name: 'Harper', image: 'graphics/harper_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"ha"},
+  {id: 'hector', name: 'Hector', image: 'graphics/hector_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"he"},
+  {id: 'hime', name: 'Hime', image: 'graphics/hime_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"hi"},
+  {id: 'holly', name: 'Holly', image: 'graphics/holly_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"hy"},
+  {id: 'hoove', name: 'Hoove', image: 'graphics/hoove_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"ho"},
+  
+  {id: 'ironaldi', name: 'Ironaldi', image: 'graphics/ironaldi_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"ir"},
+  
+  {id: 'jacques', name: 'Jacques', image: 'graphics/jacques_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"jc"},
+  {id: 'jeanloo', name: 'Jeanloo', image: 'graphics/jeanloo_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"je"},
+  {id: 'jerry', name: 'Jerry', image: 'graphics/jerry_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"jr"},
+  {id: 'johnny', name: 'Johnny', image: 'graphics/johnny_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"jo"},
+ 
+  {id: 'keith', name: 'Keith', image: 'graphics/keith_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"ke"},
+  {id: 'keyes', name: 'Keyes', image: 'graphics/keyes_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"ky"},
+  {id: 'koa', name: 'Koa', image: 'graphics/koa_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"ko"},
+  {id: 'kopi', name: 'Kopi', image: 'graphics/kopi_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"kp"},
+  {id: 'kristof', name: 'Kristof', image: 'graphics/kristof_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"kr"},
+  
+  {id: 'lucinda', name: 'Lucinda', image: 'graphics/lucinda_n.png', grouping: "dateable", separable: "no", dlc: "yes", shortcode:"lc"},
+  {id: 'luke', name: 'Luke', image: 'graphics/luke_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"lu"},
+  {id: 'lux', name: 'Lux', image: 'graphics/lux_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"lx"},
+  {id: 'lyric', name: 'Lyric', image: 'graphics/lyric_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"ly"},
+  
+  {id: 'mac', name: 'Mac', image: 'graphics/mac_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"mc"},
+  {id: 'maggie', name: 'Maggie', image: 'graphics/maggie_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"mg"},
+  {id: 'mateo', name: 'Mateo', image: 'graphics/mateo_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"ma"},
+  {id: 'memoria', name: 'Memoria', image: 'graphics/memoria_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"me"},
+  {id: 'mikey', name: 'Mikey', image: 'graphics/mikey_n.png', grouping: "dateable", separable: "no", dlc: "yes", shortcode:"mk"},
+  {id: 'miranda', name: 'Miranda', image: 'graphics/miranda_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"mi"},
+  {id: 'mitchell', name: 'Mitchell', image: 'graphics/mitchell_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"mt"},
+  {id: 'monique', name: 'Monique', image: 'graphics/monique_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"mo"},
+  
+  {id: 'nightmare', name: 'Nightmare', image: 'graphics/nightmare_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"ni"},
+  
+  {id: 'parker', name: 'Parker', image: 'graphics/parker_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"pa"},
+  {id: 'penelope', name: 'Penelope', image: 'graphics/penelope_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"pe"},
+  {id: 'phoenicia', name: 'Phoenicia', image: 'graphics/phoenicia_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"ph"},
+  {id: 'prissy', name: 'Prissy', image: 'graphics/prissy_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"pr"},
+  
+  {id: 'rainey', name: 'Rainey', image: 'graphics/rainey_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"ra"},
+  {id: 'rebel', name: 'Rebel', image: 'graphics/rebel_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"re"},
+  {id: 'reggie', name: 'Reggie', image: 'graphics/reggie_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"rg"},
+  {id: 'river', name: 'River', image: 'graphics/river_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"ri"},
+  {id: 'rongomaiwhenua', name: 'Rongomaiwhenua', image: 'graphics/rongomaiwhenua_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"ro"},
+  
+  {id: 'sassy', name: 'Sassy', image: 'graphics/sassy_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"sa"},
+  {id: 'scandalabra', name: 'Scandalabra', image: 'graphics/scandalabra_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"sc"},
+  {id: 'shadow', name: 'Shadow', image: 'graphics/shadow_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"sh"},
+  {id: 'shelley', name: 'Shelley', image: 'graphics/shelley_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"sy"},
+  {id: 'sinclaire', name: 'Sinclaire', image: 'graphics/sinclaire_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"si"},
+  {id: 'skylar', name: 'Skylar', image: 'graphics/skylar_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"sk"},
+  {id: 'sophia', name: 'Sophia', image: 'graphics/sophia_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"so"},
+  {id: 'stefan', name: 'Stefan', image: 'graphics/stefan_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"st"},
+  {id: 'stella', name: 'Stella', image: 'graphics/stella_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"sl"},
+  {id: 'stepford', name: 'Stepford', image: 'graphics/stepford_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"sp"},
+  
+  {id: 'tbc', name: 'Textbox-chan', image: 'graphics/tbc_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"tb"},
+  {id: 'teddy', name: 'Teddy', image: 'graphics/teddy_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"te"},
+  {id: 'telly', name: 'Telly', image: 'graphics/telly_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"tl"},
+  {id: 'tim', name: 'Tim', image: 'graphics/tim_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"ti"},
+  {id: 'tina', name: 'Tina', image: 'graphics/tina_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"tn"},
+  {id: 'tony', name: 'Tony', image: 'graphics/tony_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"to"},
+  {id: 'tydus', name: 'Tydus', image: 'graphics/tydus_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"ty"},
+  {id: 'tyrell', name: 'Tyrell', image: 'graphics/tyrell_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"tr"},
+  
+  {id: 'vaughn', name: 'Vaughn', image: 'graphics/vaughn_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"va"},
+  
+  {id: 'wallace', name: 'Wallace', image: 'graphics/wallace_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"wa"},
+  {id: 'washford', name: 'Washford', image: 'graphics/washford_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"ws"},
+  {id: 'willi', name: 'Willi', image: 'graphics/willi_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"wi"},
+  {id: 'winnifred', name: 'Winnifred', image: 'graphics/winnifred_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"wn"},
+  {id: 'wyndolyn', name: 'Wyndolyn', image: 'graphics/wyndolyn_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"wy"},
+  
+  {id: 'zoey', name: 'Zoey', image: 'graphics/zoey_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"zo"},
 
   //non-dateables below
-  {id: 'anna', name: 'Anna', image: 'graphics/misc/Anna_3_Houses_portrait.png', faction: "neutral", playable: "yes", student: "no", base: "anna", shortcode:"wy"},
+  {id: 'anna', name: 'Anna', image: 'graphics/misc/Anna_3_Houses_portrait.png', faction: "neutral", playable: "yes", student: "no", base: "anna", dlc: "no", shortcode:"wy"},
   //humans below
-  {id: 'acheron', name: 'Acheron', image: 'graphics/antagonists/Acheron_portrait.png', faction: "alliance", playable: "no", student: "no", base: "acheron", shortcode:"wp"},
+  {id: 'acheron', name: 'Acheron', image: 'graphics/antagonists/Acheron_portrait.png', faction: "alliance", playable: "no", student: "no", base: "acheron", dlc: "no", shortcode:"wp"},
   //separate ways below
   //alt forms below
-  {id: 'jon_wick', name: 'Jon Wick', image: 'graphics/alt_forms/Jon_Wick_portrait.png', faction: "neutral", playable: "no", student: "no", base: "jon_wick", shortcode:"yh"},
-  {id: 'timmy', name: 'Timmy', image: 'graphics/alt_forms/Timmy_portrait.png', faction: "neutral", playable: "no", student: "no", base: "timmy", shortcode:"yh"},
+  {id: 'jon_wick', name: 'Jon Wick', image: 'graphics/alt_forms/Jon_Wick_portrait.png', faction: "neutral", playable: "no", student: "no", base: "jon_wick", dlc: "no", shortcode:"yh"},
+  {id: 'timmy', name: 'Timmy', image: 'graphics/alt_forms/Timmy_portrait.png', faction: "neutral", playable: "no", student: "no", base: "timmy", dlc: "no", shortcode:"yh"},
 ];
 
 var myPicker = new picker.Picker({
