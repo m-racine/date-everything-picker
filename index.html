@@ -329,7 +329,8 @@ button.disabled:hover {
 <label><input type="checkbox" name="dlc" class="dlc" value="yes"> DLC Characters</label>
 </p>
 <p>Humans are largely coworkers from Valdivian. Separateds will add in characters like Curt and Rod separate from the Curt&Rod entry. Toggle "separables" off to remove Curt&Rod to avoid double ranking.</p>
-
+<p></p>
+    
 <script>
 'use strict';
 
@@ -538,13 +539,6 @@ var myPicker = new picker.Picker({
             if (settings.grouping.indexOf(items[i].grouping) == -1 ||
                   settings.dlc.indexOf(items[i].dlc) == -1 ||
                    settings.separable.indexOf(items[i].separable) == -1) continue;
-            // If we want no duplicates, make sure we're not already including a different incarnation of the same character.
-            if (!settings.duplicates) {
-                // Skip if we're already including a character with this base.
-                if (items[i].base && used[items[i].base]) continue;
-
-                // Record that we're including this character, so we don't introduce duplicates later.
-                used[items[i].base || items[i].id] = true;
             }
             filteredList.push(items[i].id);
         }
