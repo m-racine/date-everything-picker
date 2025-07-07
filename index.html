@@ -324,7 +324,11 @@ button.disabled:hover {
 <label><input type="checkbox" name="grouping" class="grouping" value="others"> Non-Dateable Objects</label> 
 <label><input type="checkbox" name="grouping" class="grouping" value="humans"> Humans</label>
 <label><input type="checkbox" name="grouping" class="grouping" value="alts"> Alternative Forms</label>
+<label><input type="checkbox" name="grouping" class="grouping" value="separated"> Separateds</label>
+<label><input type="checkbox" name="separable" class="separable" value="yes"> Separable</label>
+<label><input type="checkbox" name="dlc" class="dlc" value="yes"> DLC Characters</label>
 </p>
+<p>Humans are largely coworkers from Valdivian. Separateds will add in characters like Curt and Rod separate from the Curt&Rod entry. Toggle "separables" off to remove Curt&Rod to avoid double ranking.</p>
 
 <script>
 'use strict';
@@ -512,7 +516,7 @@ var myPicker = new picker.Picker({
     shortcodeLength: 2,
     defaultSettings: {
         grouping: ['dateable',],
-        dlc: ['yes'],
+        dlc: ['no'],
         separable: ['yes', 'no'],
     },
     shouldIncludeItem: function(item, settings) {
