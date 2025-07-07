@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="initial-scale=1.0">
-<title>Fire Emblem Three Houses Favorite Picker</title>
+<title>Date Everything Favorite Picker</title>
 <style>
 body {
     background:#FFF;
@@ -319,30 +319,12 @@ button.disabled:hover {
 <p class="buttons"><button id="shared-list-continue">Continue from this list</button> <button class="shared-list-skip">Make my own list</button></p>
 </div>
 
-<p>Include Factions:
-<label><input type="checkbox" name="factions" class="factions" value="church"> Church of Seiros</label>
-<label><input type="checkbox" name="factions" class="factions" value="kingdom"> Holy Kingdom of Faerghus</label>
-<label><input type="checkbox" name="factions" class="factions" value="alliance"> Leicester Alliance</label>
-<label><input type="checkbox" name="factions" class="factions" value="empire"> Adrestian Empire</label>
-<label><input type="checkbox" name="factions" class="factions" value="bandit"> Bandits</label>
+<p>Include Groups:
+<label><input type="checkbox" name="grouping" class="grouping" value="dateable"> Dateables</label>
+<label><input type="checkbox" name="grouping" class="grouping" value="others"> Non-Dateable Objects</label> 
+<label><input type="checkbox" name="grouping" class="grouping" value="humans"> Humans</label>
+<label><input type="checkbox" name="grouping" class="grouping" value="alts"> Alternative Forms</label>
 </p>
-<p id="spoilers">Other Factions
-<label><input type="checkbox" name="factions" class="factions" value="agartha"> Agartha</label>
-<label><input type="checkbox" name="factions" class="factions" value="almyra"> Other</label>
-<label><input type="checkbox" name="factions" class="factions" value="flame"> Flame Emperor</label>
-<label><input type="checkbox" name="factions" class="factions" value="nemesis"> Nemesis</label>
-<label><input type="checkbox" name="factions" class="factions" value="neutral"> Neutral/Other</label>
-</p>
-<p>Students?:
-<label><input type="checkbox" name="students" class="students" value="yes"> Yes</label>
-<label><input type="checkbox" name="students" class="students" value="no"> No</label>
-</p>
-<p>Playable?:
-<label><input type="checkbox" name="playables" class="playables" value="yes"> Yes</label>
-<label><input type="checkbox" name="playables" class="playables" value="no"> No</label>
-</p>
-
-<p><label>Duplicates? <input type="checkbox" id="duplicates"></label></p>
 
 <script>
 'use strict';
@@ -425,7 +407,7 @@ var items = [
   {id: 'memoria', name: 'Memoria', image: 'graphics/memoria_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"me"},
   {id: 'mikey', name: 'Mikey', image: 'graphics/mikey_n.png', grouping: "dateable", separable: "no", dlc: "yes", shortcode:"mk"},
   {id: 'miranda', name: 'Miranda', image: 'graphics/miranda_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"mi"},
-  {id: 'mitchell', name: 'Mitchell', image: 'graphics/mitchell_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"mt"},
+  {id: 'mitchell', name: 'Mitchell Lynn', image: 'graphics/mitchell_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"mt"},
   {id: 'monique', name: 'Monique', image: 'graphics/monique_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"mo"},
   
   {id: 'nightmare', name: 'Nightmare', image: 'graphics/nightmare_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"ni"},
@@ -441,7 +423,7 @@ var items = [
   {id: 'river', name: 'River', image: 'graphics/river_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"ri"},
   {id: 'rongomaiwhenua', name: 'Rongomaiwhenua', image: 'graphics/rongomaiwhenua_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"ro"},
   
-  {id: 'sassy', name: 'Sassy', image: 'graphics/sassy_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"sa"},
+  {id: 'sassy', name: 'The Sassy Chap', image: 'graphics/sassy_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"sa"},
   {id: 'scandalabra', name: 'Scandalabra', image: 'graphics/scandalabra_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"sc"},
   {id: 'shadow', name: 'Shadow', image: 'graphics/shadow_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"sh"},
   {id: 'shelley', name: 'Shelley', image: 'graphics/shelley_n.png', grouping: "dateable", separable: "no", dlc: "no", shortcode:"sy"},
@@ -473,16 +455,16 @@ var items = [
 
   //alt forms below
   {id: 'clarence', name: 'Clarence', image: 'graphics/Alt-Forms/clarence_n.png', grouping: "alts", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'deenah', name: 'Zoey', image: 'graphics/Alt-Forms/deenah_n.png', grouping: "alts", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'dishy_boss', name: 'Zoey', image: 'graphics/Alt-Forms/dishy_boss.png', grouping: "alts", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'dorian_back', name: 'Zoey', image: 'graphics/Alt-Forms/dorian_back.png', grouping: "alts", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'dorian_front', name: 'Zoey', image: 'graphics/Alt-Forms/dorian_front.png', grouping: "alts", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'dorian_tiny', name: 'Zoey', image: 'graphics/Alt-Forms/dorian_tiny.png', grouping: "alts", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'dorian_trap', name: 'Zoey', image: 'graphics/Alt-Forms/dorian_trap.png', grouping: "alts", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'hector_full', name: 'Zoey', image: 'graphics/Alt-Forms/hector_full.png', grouping: "alts", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'lucinda_lust', name: 'Zoey', image: 'graphics/Alt-Forms/lucinda_lust.png', grouping: "alts", separable: "no", dlc: "yes", shortcode:"zo"},
-  {id: 'sinclaire_turtle', name: 'Zoey', image: 'graphics/Alt-Forms/sinclaire_t.png', grouping: "alts", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'skips', name: 'Zoey', image: 'graphics/Alt-Forms/skips_n.png', grouping: "alts", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'deenah', name: 'Deenah', image: 'graphics/Alt-Forms/deenah_n.png', grouping: "alts", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'dishy_boss', name: 'Boss Dishy', image: 'graphics/Alt-Forms/dishy_boss.png', grouping: "alts", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'dorian_back', name: 'Back Dorian', image: 'graphics/Alt-Forms/dorian_back.png', grouping: "alts", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'dorian_front', name: 'Front Dorian', image: 'graphics/Alt-Forms/dorian_front.png', grouping: "alts", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'dorian_tiny', name: 'Tiny Dorian', image: 'graphics/Alt-Forms/dorian_tiny.png', grouping: "alts", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'dorian_trap', name: 'Trap Dorian', image: 'graphics/Alt-Forms/dorian_trap.png', grouping: "alts", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'hector_full', name: 'Out of Vent Hector', image: 'graphics/Alt-Forms/hector_full.png', grouping: "alts", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'lucinda_lust', name: 'Lucinda Lust', image: 'graphics/Alt-Forms/lucinda_lust.png', grouping: "alts", separable: "no", dlc: "yes", shortcode:"zo"},
+  {id: 'sinclaire_turtle', name: 'Sinclaire the Turtle', image: 'graphics/Alt-Forms/sinclaire_t.png', grouping: "alts", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'skips', name: 'Skips', image: 'graphics/Alt-Forms/skips_n.png', grouping: "alts", separable: "no", dlc: "no", shortcode:"zo"},
 
   //humans below
   {id: 'david', name: 'David Most', image: 'graphics/Humans/david_n.png', grouping: "humans", separable: "no", dlc: "no", shortcode:"zo"},
@@ -492,35 +474,35 @@ var items = [
   {id: 'tom', name: 'Tom', image: 'graphics/Humans/tom_n.png', grouping: "humans", separable: "no", dlc: "no", shortcode:"zo"},
 
   //non-dateables below
-  {id: 'ballcock', name: 'Zoey', image: 'graphics/Non-Dateables/ballcock_n.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'birdtha', name: 'Zoey', image: 'graphics/Non-Dateables/zoey_n.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'ciggy', name: 'Zoey', image: 'graphics/Non-Dateables/zoey_n.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'cluckles', name: 'Zoey', image: 'graphics/Non-Dateables/zoey_n.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'dipodgenes', name: 'Zoey', image: 'graphics/Non-Dateables/zoey_n.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'instaglam', name: 'Zoey', image: 'graphics/Non-Dateables/zoey_n.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'lauren', name: 'Zoey', image: 'graphics/Non-Dateables/zoey_n.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'line', name: 'Zoey', image: 'graphics/Non-Dateables/zoey_n.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'mateo_1', name: 'Zoey', image: 'graphics/Non-Dateables/zoey_n.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'mateo_3', name: 'Zoey', image: 'graphics/Non-Dateables/zoey_n.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'mateo_4', name: 'Zoey', image: 'graphics/Non-Dateables/zoey_n.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'mateo_5', name: 'Zoey', image: 'graphics/Non-Dateables/zoey_n.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'mateo_6', name: 'Zoey', image: 'graphics/Non-Dateables/zoey_n.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'mikeykids', name: 'Zoey', image: 'graphics/Non-Dateables/zoey_n.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'narrator', name: 'Zoey', image: 'graphics/Non-Dateables/zoey_n.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'nekoboru', name: 'Zoey', image: 'graphics/Non-Dateables/zoey_n.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'sudsy', name: 'Zoey', image: 'graphics/Non-Dateables/zoey_n.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'val', name: 'Zoey', image: 'graphics/Non-Dateables/zoey_n.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'ballcock', name: 'Ballcock', image: 'graphics/Non-Dateables/ballcock_n.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'birdtha', name: 'Birdtha', image: 'graphics/Non-Dateables/birdtha_n.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'ciggy', name: 'Ciggy', image: 'graphics/Non-Dateables/ciggy_n.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'cluckles', name: 'Mr. Cluckles', image: 'graphics/Non-Dateables/cluckles_n.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'dipodgenes', name: 'The Dipodgenes', image: 'graphics/Non-Dateables/dipodgenes_n.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'instaglam', name: 'Instaglam Moderator', image: 'graphics/Non-Dateables/instaglam_n.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'lauren', name: 'Lauren Ipsum', image: 'graphics/Non-Dateables/lauren_n.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'lint', name: 'Lint Eastwood', image: 'graphics/Non-Dateables/lint.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'mateo_1', name: 'Animal', image: 'graphics/Non-Dateables/mateo_1.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'mateo_3', name: 'Animal', image: 'graphics/Non-Dateables/mateo_3.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'mateo_4', name: 'Animal', image: 'graphics/Non-Dateables/mateo_4.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'mateo_5', name: 'Animal', image: 'graphics/Non-Dateables/mateo_5.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'mateo_6', name: 'Animal', image: 'graphics/Non-Dateables/mateo_6.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'mikeykids', name: 'Mikey\'s Kids', image: 'graphics/Non-Dateables/mikeykids_n.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'narrator', name: 'The Narrator', image: 'graphics/Non-Dateables/narrator_n.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'nekoboru', name: 'Nekoboru', image: 'graphics/Non-Dateables/nekoboru_n.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'sudsy', name: 'Sudsy', image: 'graphics/Non-Dateables/sudsy_n.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'val', name: 'Val 9000', image: 'graphics/Non-Dateables/val_n.png', grouping: "others", separable: "no", dlc: "no", shortcode:"zo"},
   
   //separate ways below
-  {id: 'curt', name: 'Zoey', image: 'graphics/Separate Ways/zoey_n.png', grouping: "separated", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'eddie', name: 'Zoey', image: 'graphics/Separate Ways/zoey_n.png', grouping: "separated", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'hank1', name: 'Zoey', image: 'graphics/Separate Ways/zoey_n.png', grouping: "separated", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'hank2', name: 'Zoey', image: 'graphics/Separate Ways/zoey_n.png', grouping: "separated", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'hank3', name: 'Zoey', image: 'graphics/Separate Ways/zoey_n.png', grouping: "separated", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'hank4', name: 'Zoey', image: 'graphics/Separate Ways/zoey_n.png', grouping: "separated", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'hank5', name: 'Zoey', image: 'graphics/Separate Ways/zoey_n.png', grouping: "separated", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'rod', name: 'Zoey', image: 'graphics/Separate Ways/zoey_n.png', grouping: "separated", separable: "no", dlc: "no", shortcode:"zo"},
-  {id: 'volt', name: 'Zoey', image: 'graphics/Separate Ways/zoey_n.png', grouping: "separated", separable: "no", dlc: "no", shortcode:"zo"}
+  {id: 'curt', name: 'Curt', image: 'graphics/Separate Ways/zoey_n.png', grouping: "separated", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'eddie', name: 'Eddie', image: 'graphics/Separate Ways/zoey_n.png', grouping: "separated", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'hank1', name: 'Hank 1', image: 'graphics/Separate Ways/zoey_n.png', grouping: "separated", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'hank2', name: 'Hank 2', image: 'graphics/Separate Ways/zoey_n.png', grouping: "separated", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'hank3', name: 'Hank 3', image: 'graphics/Separate Ways/zoey_n.png', grouping: "separated", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'hank4', name: 'Hank 4', image: 'graphics/Separate Ways/zoey_n.png', grouping: "separated", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'hank5', name: 'Hank 5', image: 'graphics/Separate Ways/zoey_n.png', grouping: "separated", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'rod', name: 'Rod', image: 'graphics/Separate Ways/zoey_n.png', grouping: "separated", separable: "no", dlc: "no", shortcode:"zo"},
+  {id: 'volt', name: 'Volt', image: 'graphics/Separate Ways/zoey_n.png', grouping: "separated", separable: "no", dlc: "no", shortcode:"zo"}
 ];
 
 var myPicker = new picker.Picker({
