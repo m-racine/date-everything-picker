@@ -270,9 +270,9 @@ button.disabled:hover {
     margin:0 0.2em;
 }
 
-#spoilers {
+/*#spoilers {
   display:none;
-}
+}*/
 
 </style>
 </head>
@@ -288,7 +288,7 @@ button.disabled:hover {
 </ul>
 
 <p id="buttons"><button id="pick">Pick</button> <button id="pass">Pass</button> <button id="undo">Undo</button> <button id="redo">Redo</button></p>
-<button onclick="hideSpoilers()">Show/Hide Spoiler Categories</button>
+<!--<button onclick="hideSpoilers()">Show/Hide Spoiler Categories</button>-->
 </div>
 
 <div id="secondary">
@@ -595,7 +595,7 @@ var sortable = new Sortable(pickerUI.elem.favorites.get(0), {
 });
 /* End sortable favorites */
 
-/*hidden categories*/
+/*hidden categories
 function hideSpoilers() {
   var x = document.getElementById("spoilers");
   if (x.style.display === "block") {
@@ -603,7 +603,7 @@ function hideSpoilers() {
   } else {
     x.style.display = "block";
   }
-}
+}*/
 
 
 </script>
